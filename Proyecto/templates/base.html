@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{% block title %}Panel{% endblock %}</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="https://imagenes.elpais.com/resizer/v2/Y3W6QUFBBZLLTALRW6NBRPZ2RA.jpg?auth=d68f18251117888479d8fdc3210796bc86d9d3f41719da72c2877bcafc3504ea&width=1960&height=1103&smart=true" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
+</head>
+
+<body> <!-- gradient applied via custom.css -->
+
+<!-- HEADER -->
+<header class="bg-info text-white text-center py-4 mb-3"> <!-- header uses Bootstrap class -->
+    <h1 class="m-0">{% block header %}MI TIENDA ONLINE{% endblock %}</h1>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark mb-4"> <!-- navbar background set in custom.css -->
+    <div class="container">
+        <!-- removed standalone brand to include Inicio in button list -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarTop">
+            <ul class="navbar-nav">
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-dark px-3" href="{% url 'inicio' %}">Inicio</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-dark px-3" href="{% url 'productos' %}">Productos</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-dark px-3" href="{% url 'ventas' %}">Ventas</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-dark px-3" href="{% url 'clientes' %}">Clientes</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-dark px-3" href="{% url 'secciones' %}">Secciones</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn btn-outline-dark px-3" href="{% url 'configuracion' %}">Configuracion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="container">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body text-center">
+            {% block content %}
+            <h2 class="card-title">Bienvenido al Panel</h2>
+            <!-- botones de ejemplo en distribución horizontal -->
+            <div class="d-flex justify-content-center gap-2 mt-3">
+                <a href="#" class="btn btn-primary">Acción 1</a>
+                <a href="#" class="btn btn-secondary">Acción 2</a>
+                <a href="#" class="btn btn-success">Acción 3</a>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-info text-white text-center py-3 mt-auto">
+    &copy;Cayetano Benitez Verdugo
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

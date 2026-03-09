@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<h2>Lista de Secciones</h2>
+<p>Aquí puedes ver y gestionar todas las secciones de tu sistema.</p>
+
+<!-- Botón para agregar sección -->
+<div class="mb-3">
+  <a href="{% url 'nuevo_seccion' %}" class="btn btn-success">Agregar Seccion</a>
+</div>
+
+<!-- Tabla de secciones dinámica -->
+<div class="table-responsive">
+  <table class="table table-dark table-striped table-bordered text-center">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in secciones %}
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.activo }}</td>
+        <td>
+          <a href="{% url 'editar_seccion' s.id %}" class="btn btn-primary btn-sm">Editar</a>
+          <a href="{% url 'anular_seccion' s.id %}" class="btn btn-danger btn-sm">Anular</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No hay Secciones disponibles</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

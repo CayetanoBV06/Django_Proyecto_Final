@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Configuración</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre de la Empresa:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ empresa.nombre }}">
+        </div>
+        <div class="mb-3">
+            <label for="cif" class="form-label">CIF:</label>
+            <input type="text" class="form-control" id="cif" name="cif" value="{{ empresa.cif }}">
+        </div>
+        <div class="mb-3">
+            <label for="tipo_iva" class="form-label">Tipo de IVA:</label>
+            <input type="number" class="form-control" id="tipo_iva" name="tipo_iva" value="{{ empresa.tipo_iva }}">
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" value="{{ empresa.direccion }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock %}

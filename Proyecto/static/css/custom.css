@@ -1,0 +1,78 @@
+/* Custom supplemental styles built on Bootstrap utilities */
+
+/* overall background color for entire site */
+body {
+    /* mint cream background */
+    background-color: #f0fff0;
+    color: #21312a;
+}
+
+/* navbar should use a rich teal */
+.navbar {
+    background-color: #008080 !important;
+}
+
+/* override bootstrap-highlighting of bg-light if still present */
+.navbar.bg-light {
+    background-color: #008080 !important;
+}
+
+/* header/footer using same teal as navbar */
+header.bg-info, footer.bg-info {
+    background-color: #008080 !important;
+}
+
+/* header/footer colors using bootstrap classes as much as possible */
+header {
+    /* use bg-info via class, but keep text white */
+}
+footer {
+    /* use bg-info class from markup */
+}
+
+/* adjust card transparency */
+main .card {
+    background-color: rgba(255,255,255,0.95);
+}
+
+/* improved table row colors using bootstrap custom vars */
+/* default light tables (if any) still use white/transparent rows */
+.table:not(.table-dark) thead th {
+    background-color: #0a9396;
+    color: #ffffff;
+}
+.table:not(.table-dark) tbody tr {
+    background-color: rgba(255,255,255,0.9);
+}
+.table:not(.table-dark) tbody tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.7);
+}
+.table:not(.table-dark) tbody tr:hover {
+    background-color: rgba(255,255,255,1);
+}
+
+/* preserve dark theme for dark tables like ventas */
+.table-dark thead th {
+    background-color: #343a40;
+    color: #f1f1f1;
+}
+.table-dark tbody tr {
+    background-color: #3e444a;
+}
+.table-dark tbody tr:nth-child(even) {
+    background-color: #343a40;
+}
+.table-dark tbody tr:hover {
+    background-color: #4e555b;
+}
+
+/* action buttons inside tables using bootstrap color classes */
+.table .btn-primary { background-color: #006400; border-color: #006400; color: #ffffff !important; }
+.table .btn-danger { background-color: #dc143c; border-color: #dc143c; color: #ffffff !important; }
+.table .btn-primary:hover { background-color: #005000; color: #ffffff !important; }
+.table .btn-danger:hover { background-color: #b01032; color: #ffffff !important; }
+
+/* general button text color overrides */
+.btn { color: #ffffff !important; }
+.btn.btn-outline-dark { color: #ffffff !important; }
+
