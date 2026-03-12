@@ -1,27 +1,57 @@
 
 {% extends 'base.html' %}
+
+{#
+   Plantilla de configuración. A diferencia de la vista de ventas, aquí no se
+   lista ni filtra por fecha: el formulario muestra directamente los valores
+   guardados en el JSON y permite editarlos. El comportamiento "es lo mismo"
+   (leer/guardar datos desde un formulario POST) pero la presentación es
+   distinta (tarjeta con columnas y mensaje de éxito).
+#}
+
 {% block content %}
 <div class="container mt-5">
-    <h1>Configuración</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre de la Empresa:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ empresa.nombre }}">
+    <!-- Se presenta la configuración dentro de una tarjeta para diferenciarla visualmente -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+            <h1 class="h4 mb-0">Configuración de la Empresa</h1>
         </div>
-        <div class="mb-3">
-            <label for="cif" class="form-label">CIF:</label>
-            <input type="text" class="form-control" id="cif" name="cif" value="{{ empresa.cif }}">
+        <div class="card-body">
+
+
+            <!-- Mensaje de éxito tras guardar -- solo aparece cuando guardado es True -->
+            {% if guardado %}
+            <div class="alert alert-success" role="alert">
+                Configuración guardada correctamente.
+            </div>
+            {% endif %}
+
+            <!-- Formulario con un diseño de dos columnas en pantallas grandes -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">Nombre de la Empresa:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ empresa.nombre }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cif" class="form-label">CIF:</label>
+                        <input type="text" class="form-control" id="cif" name="cif" value="{{ empresa.cif }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="tipo_iva" class="form-label">Tipo de IVA:</label>
+                        <input type="number" class="form-control" id="tipo_iva" name="tipo_iva" value="{{ empresa.tipo_iva }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="direccion" class="form-label">Dirección:</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{ empresa.direccion }}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="tipo_iva" class="form-label">Tipo de IVA:</label>
-            <input type="number" class="form-control" id="tipo_iva" name="tipo_iva" value="{{ empresa.tipo_iva }}">
-        </div>
-        <div class="mb-3">
-            <label for="direccion" class="form-label">Dirección:</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" value="{{ empresa.direccion }}">
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
+    </div>
 </div>
 {% endblock %}

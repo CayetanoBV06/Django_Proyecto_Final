@@ -4,24 +4,23 @@
 
 {% block content %}
 <h2>Lista de Ventas</h2>
-<p>Aquí puedes ver y gestionar todas las ventas de tu sistema.</p>
 
-<form method="get" class="mb-3 d-flex"> 
-  <select name="fecha" class="form-control">
-        <option value="">Seleccionar fecha</option>
-        {% for f in fechas %}
-      <option value="{{ f|date:'Y-m-d' }}" 
-        {% if request.GET.fecha == f|date:'Y-m-d' %}selected{% endif %}>
-        {{ f|date:"M. d, Y" }}
-      </option>
-  {% endfor %}
-  </select>
+
+
+<!-- Formulario de filtrado por fecha -->
+<!-- El atributo method="get" envía los datos como parámetros en la URL (ej: ?fecha=2026-03-12) -->
+<!-- La clase "d-flex" organiza los elementos en horizontal -->
+<form method="get" class="mb-3 d-flex">
+  <!-- Input de tipo date que permite al usuario ingresar manualmente una fecha -->
+  <!-- El atributo name="fecha" envía la fecha como parámetro GET -->
+  <!-- El atributo value="{{ request.GET.fecha }}" mantiene la fecha seleccionada si existe -->
+  <input type="date" name="fecha" class="form-control" value="{{ request.GET.fecha }}">
+  <!-- Botón para enviar el formulario y filtrar las ventas por la fecha ingresada -->
   <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
-
-
-{% if fecha_seleccionada %}
-  <div class="alert alert-info">
+</div>
+{% if fecha_seleccionada %}<!--Aqui lo que hacemos es que cuando se filtre se muestre el mensaje de cuantas ventas hay en dicha fecha -->
+  <div class="alert alert-success">
     Número de ventas en {{ fecha_seleccionada }}: {{ total_ventas }}
   </div>
 {% endif %}

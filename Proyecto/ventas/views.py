@@ -3,17 +3,17 @@ from .models import Venta
 from .forms import VentaForm
 
 def lista_ventas(request):
-    fecha = request.GET.get('fecha')
-    ventas = Venta.objects.all()
-    total_ventas = None
+    fecha = request.GET.get('fecha')#captura el valor de la fecha enviada/ si no hay sera none
+    ventas = Venta.objects.all()#obtiene todas las ventas de la base de datos
+    total_ventas = None#empieza siendo none
 
-    if fecha:
-        ventas = ventas.filter(fecha=fecha)
-        total_ventas = ventas.count()
+    if fecha:#este if hace que si la fecha no es none, filtra la fecha por la indidicada en el formulario
+        ventas = ventas.filter(fecha=fecha)#filtra las ventas por la fecha indicada en el formulario
+        total_ventas = ventas.count()#calcula el total de ventas de la fecha indicada
 
-    fechas = Venta.objects.values_list('fecha', flat=True).distinct()
+    fechas = Venta.objects.values_list('fecha', flat=True).distinct()#da la lista de fechas en las que hay ventas, el distinct hace que no se repita ninguna
 
-    return render(request, "ventas/ventas.html", {
+    return render(request, "ventas/ventas.html", {#pasa los datos a la plantilla de ventas.html
         "ventas": ventas,
         "fechas": fechas,
         "total_ventas": total_ventas,
